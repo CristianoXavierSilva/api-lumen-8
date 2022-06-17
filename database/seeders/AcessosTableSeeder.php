@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
+use App\Models\Entities\Acessos;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class AcessosTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run()
-    {
-        $this->call(AcessosTableSeeder::class);
+    public function run() {
+        Acessos::factory()->count(10)->create();
     }
 }
