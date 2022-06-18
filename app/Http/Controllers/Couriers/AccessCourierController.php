@@ -19,7 +19,7 @@ class AccessCourierController extends Controller implements InterAccessCourier
             return response()->json([
                 'message' => 'Validação aprovada!',
                 'delivery' => $validation
-            ], 201);
+            ], 100);
         }
     }
 
