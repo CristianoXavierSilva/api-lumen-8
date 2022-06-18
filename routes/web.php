@@ -33,4 +33,11 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
         'as' => 'auth.logout',
         'uses' => 'Auth\AccessController@logout'
     ]);
+
+    $router->group(['prefix' => 'categorias'], function () use ($router) {
+        $router->post('cadastrar', [
+            'as' => 'category.create',
+            'uses' => 'Receptionists\CategoriesController@create'
+        ]);
+    });
 });
