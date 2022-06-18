@@ -13,7 +13,7 @@ class LoginCourierController extends Controller implements InterLoginCourier
         if (isset($validation->status)) {
             return response()->json([
                 'message' => 'Validação reprovada!',
-                'delivery' => $validation->validator->customMessages
+                'delivery' => $validation->response->original
             ], $validation->status);
         } else {
             return response()->json([
