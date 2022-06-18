@@ -17,7 +17,7 @@ use Laravel\Lumen\Routing\Router;
 
 $router->post('auth/login', [
     'as' => 'auth.login',
-    'uses' => 'Auth\LoginController@logging'
+    'uses' => 'Auth\AccessController@login'
 ]);
 
 /**

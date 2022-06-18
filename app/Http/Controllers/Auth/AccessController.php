@@ -8,9 +8,9 @@ use App\Http\Controllers\Receivers\LoginReceiverController;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class LoginController extends Controller
+class AccessController extends Controller
 {
-    public function logging(Request $request): JsonResponse {
+    public function login(Request $request): JsonResponse {
 
         $validation = new LoginReceiverController();
         $result = $validation->validating($request);
