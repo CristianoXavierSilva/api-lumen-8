@@ -2,17 +2,16 @@
 
 namespace App\Models\Entities;
 
+use App\Models\ModelBase;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Lumen\Auth\Authorizable;
 
-class Acessos extends Model implements AuthenticatableContract, AuthorizableContract
+class Acessos extends ModelBase implements AuthenticatableContract, AuthorizableContract
 {
-    use Authenticatable, Authorizable, HasFactory, SoftDeletes;
+    use Authenticatable, Authorizable, HasFactory;
 
     protected $table = 'tbl_acessos';
     protected $primaryKey = 'id_acesso';
@@ -38,9 +37,4 @@ class Acessos extends Model implements AuthenticatableContract, AuthorizableCont
     public function getAuthPassword() {
         return $this->senha;
     }
-
-    public $timestamps = true;
-    const CREATED_AT = 'data_hora_cadastro';
-    const UPDATED_AT = 'data_hora_alteracao';
-    const DELETED_AT = 'data_hora_exclusao';
 }
