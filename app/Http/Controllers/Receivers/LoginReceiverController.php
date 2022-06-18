@@ -17,8 +17,8 @@ class LoginReceiverController extends Controller implements InterLoginReceiver
                 'usuario' => 'required',
                 'senha' => 'required'
             ], [
-                'usuario.required' => 'A campo <b>Usuário</b> é obrigatório',
-                'senha.required' => 'A campo <b>Senha</b> é obrigatório'
+                'usuario.required' => 'O campo <b>Usuário</b> é obrigatório',
+                'senha.required' => 'O campo <b>Senha</b> é obrigatório'
             ]);
             return LoginCourierController::deliveringValidation($validation);
 
