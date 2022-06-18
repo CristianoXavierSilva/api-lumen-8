@@ -26,4 +26,11 @@ class LoginExaminerController extends Controller implements InterLoginExaminer
         }
         return LoginCourierController::deliveryExamination($token);
     }
+
+    public function dismiss(Acessos $user): JsonResponse
+    {
+        $user->remember_token = null;
+        $user->update();
+        return LoginCourierController::deliveryDismiss();
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Receivers;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Couriers\LoginCourierController;
 use App\Interfaces\Receivers\InterLoginReceiver;
+use App\Models\Entities\Acessos;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\JsonResponse;
@@ -25,5 +26,9 @@ class LoginReceiverController extends Controller implements InterLoginReceiver
         } catch (ValidationException $ex) {
             return LoginCourierController::deliveringValidation($ex);
         }
+    }
+
+    public static function user(): Acessos {
+        return auth()->user();
     }
 }

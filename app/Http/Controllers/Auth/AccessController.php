@@ -21,4 +21,12 @@ class AccessController extends Controller
         }
         return $result;
     }
+
+    public function logout(): JsonResponse {
+
+        $user = LoginReceiverController::user();
+        $examination = new LoginExaminerController();
+
+        return $examination->dismiss($user);
+    }
 }

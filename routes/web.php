@@ -28,4 +28,9 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
     $router->get('/', function () use ($router) {
         return $router->app->version();
     });
+
+    $router->get('auth/logout', [
+        'as' => 'auth.logout',
+        'uses' => 'Auth\AccessController@logout'
+    ]);
 });

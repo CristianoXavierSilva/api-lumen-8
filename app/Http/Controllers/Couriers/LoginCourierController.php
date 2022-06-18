@@ -36,4 +36,11 @@ class LoginCourierController extends Controller implements InterLoginCourier
             'delivery' => $token
         ]);
     }
+
+    public static function deliveryDismiss(): JsonResponse {
+        return response()->json([
+            'message' => 'Logout efetuado com sucesso!',
+            'delivery' => null
+        ]);
+    }
 }
