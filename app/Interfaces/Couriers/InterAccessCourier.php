@@ -4,7 +4,7 @@ namespace App\Interfaces\Couriers;
 
 use Illuminate\Http\JsonResponse;
 
-interface InterLoginCourier
+interface InterAccessCourier
 {
     public static function deliveringValidation($validation): JsonResponse;
     public static function deliveryExamination(string $token = null): JsonResponse;

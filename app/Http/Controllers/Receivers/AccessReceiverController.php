@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Receivers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Couriers\LoginCourierController;
-use App\Interfaces\Receivers\InterLoginReceiver;
+use App\Http\Controllers\Couriers\AccessCourierController;
+use App\Interfaces\Receivers\InterAccessReceiver;
 use App\Models\Entities\Acessos;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\JsonResponse;
 
-class LoginReceiverController extends Controller implements InterLoginReceiver
+class AccessReceiverController extends Controller implements InterAccessReceiver
 {
     public function validating(Request $request): JsonResponse {
         try {
@@ -21,10 +21,10 @@ class LoginReceiverController extends Controller implements InterLoginReceiver
                 'usuario.required' => 'O campo <b>Usuário</b> é obrigatório',
                 'senha.required' => 'O campo <b>Senha</b> é obrigatório'
             ]);
-            return LoginCourierController::deliveringValidation($validation);
+            return AccessCourierController::deliveringValidation($validation);
 
         } catch (ValidationException $ex) {
-            return LoginCourierController::deliveringValidation($ex);
+            return AccessCourierController::deliveringValidation($ex);
         }
     }
 

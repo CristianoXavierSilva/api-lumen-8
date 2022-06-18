@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Examiners\LoginExaminerController;
-use App\Http\Controllers\Receivers\LoginReceiverController;
+use App\Http\Controllers\Examiners\AccessExaminerController;
+use App\Http\Controllers\Receivers\AccessReceiverController;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -12,11 +12,11 @@ class AccessController extends Controller
 {
     public function login(Request $request): JsonResponse {
 
-        $validation = new LoginReceiverController();
+        $validation = new AccessReceiverController();
         $result = $validation->validating($request);
 
         if ($result->status() == 201) {
-            $examination = new LoginExaminerController();
+            $examination = new AccessExaminerController();
             $result = $examination->examining($request);
         }
         return $result;
@@ -24,8 +24,8 @@ class AccessController extends Controller
 
     public function logout(): JsonResponse {
 
-        $user = LoginReceiverController::user();
-        $examination = new LoginExaminerController();
+        $user = AccessReceiverController::user();
+        $examination = new AccessExaminerController();
 
         return $examination->dismiss($user);
     }

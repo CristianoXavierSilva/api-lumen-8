@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Couriers;
 
 use App\Http\Controllers\Controller;
-use App\Interfaces\Couriers\InterLoginCourier;
+use App\Interfaces\Couriers\InterAccessCourier;
 use Illuminate\Http\JsonResponse;
 
-class LoginCourierController extends Controller implements InterLoginCourier
+class AccessCourierController extends Controller implements InterAccessCourier
 {
     public static function deliveringValidation($validation): JsonResponse {
 

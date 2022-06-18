@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Examiners;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Couriers\LoginCourierController;
-use App\Interfaces\Examiners\InterLoginExaminer;
+use App\Http\Controllers\Couriers\AccessCourierController;
+use App\Interfaces\Examiners\InterAccessExaminer;
 use App\Models\Entities\Acessos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Http\JsonResponse;
 
-class LoginExaminerController extends Controller implements InterLoginExaminer
+class AccessExaminerController extends Controller implements InterAccessExaminer
 {
     public function examining(Request $request): JsonResponse {
 
@@ -24,13 +24,13 @@ class LoginExaminerController extends Controller implements InterLoginExaminer
             $user->remember_token = $token;
             $user->update();
         }
-        return LoginCourierController::deliveryExamination($token);
+        return AccessCourierController::deliveryExamination($token);
     }
 
     public function dismiss(Acessos $user): JsonResponse
     {
         $user->remember_token = null;
         $user->update();
-        return LoginCourierController::deliveryDismiss();
+        return AccessCourierController::deliveryDismiss();
     }
 }
