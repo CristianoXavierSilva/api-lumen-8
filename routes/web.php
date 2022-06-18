@@ -15,11 +15,17 @@
 
 use Laravel\Lumen\Routing\Router;
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
-
 $router->post('auth/login', [
     'as' => 'auth.login',
     'uses' => 'Auth\LoginController@logging'
 ]);
+
+/**
+ * Rotas protegidas com um middleware que verifica o usuário pelo TOKEN passado no cabeçalho
+ * da requisição
+ **/
+$router->group(['middleware' => 'auth'], function () use ($router) {
+    $router->get('/', function () use ($router) {
+        return $router->app->version();
+    });
+});

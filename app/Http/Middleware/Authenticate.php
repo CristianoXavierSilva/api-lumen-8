@@ -26,7 +26,9 @@ class Authenticate
     }
 
     /**
-     * Handle an incoming request.
+     * Lidar com uma solicitação recebida. Caso não exista um usuário
+     * autenticado, o guarda impedirá que o processamento da requisição
+     * continue e retornará uma mensagem de erro
      *
      * @param Request $request
      * @param Closure $next
@@ -34,6 +36,7 @@ class Authenticate
      * @return mixed
      */
     public function handle(Request $request, Closure $next, string $guard = null) {
+
         if ($this->auth->guard($guard)->guest()) {
             return response([
                 'status' => 'fail',
