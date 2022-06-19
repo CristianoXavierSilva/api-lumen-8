@@ -37,6 +37,10 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
         'as' => 'categories',
         'uses' => 'Receptionists\CategoriesController@index'
     ]);
+    $router->get('contas[/{paginate}]', [
+        'as' => 'bills',
+        'uses' => 'Receptionists\BillsController@index'
+    ]);
 
     $router->group(['prefix' => 'categorias'], function () use ($router) {
 
