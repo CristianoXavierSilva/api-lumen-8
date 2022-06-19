@@ -7,6 +7,7 @@ use App\Http\Controllers\Couriers\CategoriesCourierController;
 use App\Interfaces\Examiners\InterCategoriesExaminer;
 use App\Models\Entities\Categorias;
 use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CategoriesExaminerController extends Controller implements InterCategoriesExaminer
 {
@@ -22,10 +23,15 @@ class CategoriesExaminerController extends Controller implements InterCategories
 
     public function examiningUpdate($validatedData, int $id): JsonResponse {
 
-        $categoria = Categorias::findOrFail($id);
-        $categoria->cat_titulo = $validatedData->titulo;
-        $categoria->update();
+        try {
+            $categoria = Categorias::findOrFail($id);
+            $categoria->cat_titulo = $validatedData->titulo;
+            $categoria->update();
 
-        return CategoriesCourierController::deliveryExaminingUpdate($categoria);
+            return CategoriesCourierController::deliveryExaminingUpdate($categoria);
+
+        } catch (\Exception $ex) {
+            return CategoriesCourierController::deliveryExaminingUpdate(new Categorias());
+        }
     }
 }

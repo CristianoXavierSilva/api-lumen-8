@@ -42,16 +42,16 @@ class CategoriesCourierController extends Controller implements InterCategoriesC
 
     public static function deliveryExaminingUpdate(Categorias $category): JsonResponse {
 
-        if (!empty($category)) {
+        if (isset($category->id_categoria)) {
             return response()->json([
                 'message' => 'Categoria atualizada com sucesso!',
                 'delivery' => $category
             ]);
         } else {
             return response()->json([
-                'message' => 'Erro ao tentar efetuar a atualização!',
+                'message' => 'Erro ao tentar efetuar a atualização! Nenhum registro com esse ID encontrado',
                 'delivery' => null
-            ], 500);
+            ], 422);
         }
     }
 }
