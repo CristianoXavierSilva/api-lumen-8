@@ -52,4 +52,17 @@ class CategoriesExaminerController extends Controller implements InterCategories
             return CategoriesCourierController::deliveryExaminingUpdate(new Categorias());
         }
     }
+
+    public function examiningDelete(int $id): JsonResponse {
+        try {
+            $categoria = Categorias::findOrFail($id);
+
+            if ($categoria->delete()) {
+                return CategoriesCourierController::deliveryExaminingDelete(true);
+            }
+        } catch (\Exception $ex) {
+            return CategoriesCourierController::deliveryExaminingDelete(false);
+        }
+        return CategoriesCourierController::deliveryExaminingDelete(false);
+    }
 }

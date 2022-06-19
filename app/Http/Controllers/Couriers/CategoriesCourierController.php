@@ -33,12 +33,8 @@ class CategoriesCourierController extends Controller implements InterCategoriesC
                 'message' => 'Categoria cadastrada com sucesso!',
                 'delivery' => $newRecord
             ]);
-        } else {
-            return response()->json([
-                'message' => 'Erro ao tentar efetuar o cadastro!',
-                'delivery' => null
-            ], 500);
         }
+        return self::deliveryExaminingStandard();
     }
 
     public static function deliveryExaminingRead(Categorias $category): JsonResponse {
@@ -47,12 +43,8 @@ class CategoriesCourierController extends Controller implements InterCategoriesC
                 'message' => 'Categoria encontrada!',
                 'delivery' => $category
             ]);
-        } else {
-            return response()->json([
-                'message' => 'Erro ao tentar efetuar a atualização! Nenhum registro com esse ID encontrado',
-                'delivery' => null
-            ], 422);
         }
+        return self::deliveryExaminingStandard();
     }
 
     public static function deliveryExaminingUpdate(Categorias $category): JsonResponse {
@@ -62,12 +54,18 @@ class CategoriesCourierController extends Controller implements InterCategoriesC
                 'message' => 'Categoria atualizada com sucesso!',
                 'delivery' => $category
             ]);
-        } else {
-            return response()->json([
-                'message' => 'Erro ao tentar efetuar a atualização! Nenhum registro com esse ID encontrado',
-                'delivery' => null
-            ], 422);
         }
+        return self::deliveryExaminingStandard();
+    }
+
+    public static function deliveryExaminingDelete(bool $status): JsonResponse {
+        if ($status) {
+            return response()->json([
+                'message' => 'Categoria deletada com sucesso!',
+                'delivery' => $status
+            ]);
+        }
+        return self::deliveryExaminingStandard();
     }
 
     public static function deliveryExaminingList(object $categories): JsonResponse {
@@ -75,5 +73,12 @@ class CategoriesCourierController extends Controller implements InterCategoriesC
             'message' => 'Lista de categorias',
             'delivery' => $categories
         ]);
+    }
+
+    public static function deliveryExaminingStandard(): JsonResponse {
+        return response()->json([
+            'message' => 'Erro ao tentar efetuar a operação!',
+            'delivery' => null
+        ], 422);
     }
 }

@@ -74,4 +74,14 @@ class CategoriesController extends Controller
         }
         return $result;
     }
+
+    /**
+     * Remove the specified category from storage.
+     *
+     * @param  int  $id
+     * @return JsonResponse
+     */
+    public function destroy(string $id): JsonResponse {
+        return $this->examination->examiningDelete($id);
+    }
 }

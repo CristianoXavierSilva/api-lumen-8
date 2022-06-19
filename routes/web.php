@@ -53,5 +53,9 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
             'as' => 'category.update',
             'uses' => 'Receptionists\CategoriesController@update'
         ]);
+        $router->delete('excluir/{id}', [
+            'as' => 'category.delete',
+            'uses' => 'Receptionists\CategoriesController@destroy'
+        ]);
     });
 });
