@@ -7,7 +7,7 @@
 | Application Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register all of the routes for an application.
+| Here is where you can register all the routes for an application.
 | It is a breeze. Simply tell Lumen the URIs it should respond to
 | and give it the Closure to call when that URI is requested.
 |
@@ -33,9 +33,8 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
         'as' => 'auth.logout',
         'uses' => 'Auth\AccessController@logout'
     ]);
-
     $router->get('categorias[/{paginate}]', [
-        'as' => 'category',
+        'as' => 'categories',
         'uses' => 'Receptionists\CategoriesController@index'
     ]);
 
@@ -56,6 +55,11 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
         $router->delete('excluir/{id}', [
             'as' => 'category.delete',
             'uses' => 'Receptionists\CategoriesController@destroy'
+        ]);
+
+        $router->get('restaurar/{id}', [
+            'as' => 'category.restore',
+            'uses' => 'Receptionists\CategoriesController@restore'
         ]);
     });
 });

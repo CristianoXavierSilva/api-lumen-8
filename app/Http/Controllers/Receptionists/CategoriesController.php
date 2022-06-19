@@ -10,9 +10,6 @@ use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
-    protected $validation;
-    protected $examination;
-
     /**
      * Create a new controller instance.
      *
@@ -25,8 +22,6 @@ class CategoriesController extends Controller
 
     /**
      * Display a listing of categories.
-     *
-     * @return JsonResponse
      */
     public function index(string $paginate = null): JsonResponse {
         return $this->examination->examiningList($paginate);
@@ -62,10 +57,10 @@ class CategoriesController extends Controller
      * Update the specified category.
      *
      * @param  Request  $request
-     * @param string $id
+     * @param int $id
      * @return JsonResponse
      */
-    public function update(Request $request, string $id): JsonResponse {
+    public function update(Request $request, int $id): JsonResponse {
 
         $result = $this->validation->validating($request);
 
@@ -81,7 +76,17 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return JsonResponse
      */
-    public function destroy(string $id): JsonResponse {
+    public function destroy(int $id): JsonResponse {
         return $this->examination->examiningDelete($id);
+    }
+
+    /**
+     * Restore the specified category from storage.
+     *
+     * @param  int  $id
+     * @return JsonResponse
+     */
+    public function restore(int $id): JsonResponse {
+        return $this->examination->examiningRestore($id);
     }
 }

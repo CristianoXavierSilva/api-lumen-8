@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Couriers\CategoriesCourierController;
 use App\Interfaces\Examiners\InterCategoriesExaminer;
 use App\Models\Entities\Categorias;
+use App\Models\Queries\sqlCategorias;
 use Illuminate\Http\JsonResponse;
 
 class CategoriesExaminerController extends Controller implements InterCategoriesExaminer
@@ -64,5 +65,18 @@ class CategoriesExaminerController extends Controller implements InterCategories
             return CategoriesCourierController::deliveryExaminingDelete(false);
         }
         return CategoriesCourierController::deliveryExaminingDelete(false);
+    }
+
+    public function examiningRestore(int $id): JsonResponse {
+        try {
+            $categoria = sqlCategorias::findTrashed($id);
+
+            if ($categoria->restore()) {
+                return CategoriesCourierController::deliveryExaminingRestore(true);
+            }
+        } catch (\Exception $ex) {
+            return CategoriesCourierController::deliveryExaminingRestore(false);
+        }
+        return CategoriesCourierController::deliveryExaminingRestore(false);
     }
 }

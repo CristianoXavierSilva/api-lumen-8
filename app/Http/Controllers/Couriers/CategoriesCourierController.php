@@ -68,6 +68,16 @@ class CategoriesCourierController extends Controller implements InterCategoriesC
         return self::deliveryExaminingStandard();
     }
 
+    public static function deliveryExaminingRestore(bool $status): JsonResponse {
+        if ($status) {
+            return response()->json([
+                'message' => 'Categoria restaurada com sucesso!',
+                'delivery' => $status
+            ]);
+        }
+        return self::deliveryExaminingStandard();
+    }
+
     public static function deliveryExaminingList(object $categories): JsonResponse {
         return response()->json([
             'message' => 'Lista de categorias',
