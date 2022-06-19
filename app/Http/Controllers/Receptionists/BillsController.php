@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Receivers\BillsReceiverController;
 use App\Http\Controllers\Examiners\BillsExaminerController;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class BillsController extends Controller
 {
@@ -24,5 +25,21 @@ class BillsController extends Controller
      */
     public function index(string $paginate = null): JsonResponse {
         return $this->examination->examiningList($paginate);
+    }
+
+    /**
+     * Store a new category.
+     *
+     * @param  Request  $request
+     * @return JsonResponse
+     */
+    public function store(Request $request): JsonResponse {
+
+        $result = $this->validation->validating($request);
+
+        if ($result->status() == 100) {
+            $result = $this->examination->examiningCreate($result->getData()->delivery);
+        }
+        return $result;
     }
 }
