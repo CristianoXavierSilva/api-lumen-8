@@ -19,4 +19,37 @@ class BillsExaminerController extends Controller implements InterBillsExaminer
         }
         return BillsCourierController::deliveryList($bills);
     }
+
+    public function examiningCreate($validatedData): JsonResponse {
+
+        $datas = array(
+            'id_categoria' => $validatedData->categoria,
+            'con_titulo' => $validatedData->titulo,
+            'con_valor' => $validatedData->valor,
+            'con_status' => $validatedData->status
+        );
+        $newRecord = Contas::create($datas);
+
+        return BillsCourierController::deliveryExaminingCreate($newRecord);
+    }
+
+    public function examiningRead(int $id): JsonResponse
+    {
+        return new JsonResponse();
+    }
+
+    public function examiningUpdate($validatedData, int $id): JsonResponse
+    {
+        return new JsonResponse();
+    }
+
+    public function examiningDelete(int $id): JsonResponse
+    {
+        return new JsonResponse();
+    }
+
+    public function examiningRestore(int $id): JsonResponse
+    {
+        return new JsonResponse();
+    }
 }

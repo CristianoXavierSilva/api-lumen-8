@@ -66,4 +66,11 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
             'uses' => 'Receptionists\CategoriesController@restore'
         ]);
     });
+
+    $router->group(['prefix' => 'contas'], function () use ($router) {
+        $router->post('cadastrar', [
+            'as' => 'bill.create',
+            'uses' => 'Receptionists\BillsController@store'
+        ]);
+    });
 });
