@@ -34,12 +34,13 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
         'uses' => 'Auth\AccessController@logout'
     ]);
 
+    $router->get('categorias[/{paginate}]', [
+        'as' => 'category',
+        'uses' => 'Receptionists\CategoriesController@index'
+    ]);
+
     $router->group(['prefix' => 'categorias'], function () use ($router) {
 
-        $router->get('/', [
-            'as' => 'category',
-            'uses' => 'Receptionists\CategoriesController@index'
-        ]);
         $router->post('cadastrar', [
             'as' => 'category.create',
             'uses' => 'Receptionists\CategoriesController@store'

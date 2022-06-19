@@ -9,5 +9,5 @@ interface InterCategoriesExaminer
 {
     public function examiningCreate($validatedData): JsonResponse;
     public function examiningUpdate($validatedData, int $id): JsonResponse;
-    public function examiningList(): JsonResponse;
+    public function examiningList(string $paginate = null): JsonResponse;
 }

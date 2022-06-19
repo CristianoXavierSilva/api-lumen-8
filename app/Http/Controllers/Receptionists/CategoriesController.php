@@ -28,8 +28,8 @@ class CategoriesController extends Controller
      *
      * @return JsonResponse
      */
-    public function index(): JsonResponse {
-        return $this->examination->examiningList();
+    public function index(string $paginate = null): JsonResponse {
+        return $this->examination->examiningList($paginate);
     }
 
     /**

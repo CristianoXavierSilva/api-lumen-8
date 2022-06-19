@@ -56,7 +56,7 @@ class CategoriesCourierController extends Controller implements InterCategoriesC
         }
     }
 
-    public static function deliveryExaminingList(Collection $categories): JsonResponse {
+    public static function deliveryExaminingList(object $categories): JsonResponse {
         return response()->json([
             'message' => 'Lista de categorias',
             'delivery' => $categories

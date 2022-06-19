@@ -10,9 +10,13 @@ use Illuminate\Http\JsonResponse;
 
 class CategoriesExaminerController extends Controller implements InterCategoriesExaminer
 {
-    public function examiningList(): JsonResponse
+    public function examiningList($paginate = null): JsonResponse
     {
-        $categories = Categorias::all();
+        if (!is_null($paginate)) {
+            $categories = Categorias::paginate($paginate);
+        } else {
+            $categories = Categorias::all();
+        }
         return CategoriesCourierController::deliveryExaminingList($categories);
     }
 

@@ -15,5 +15,5 @@ interface InterCategoriesCourier
 
     public static function deliveryExaminingCreate(Categorias $newRecord): JsonResponse;
     public static function deliveryExaminingUpdate(Categorias $category): JsonResponse;
-    public static function deliveryExaminingList(Collection $categories): JsonResponse;
+    public static function deliveryExaminingList(object $categories): JsonResponse;
 }
