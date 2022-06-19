@@ -84,5 +84,9 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
             'as' => 'bill.delete',
             'uses' => 'Receptionists\BillsController@destroy'
         ]);
+        $router->get('restaurar/{id}', [
+            'as' => 'bill.restore',
+            'uses' => 'Receptionists\BillsController@restore'
+        ]);
     });
 });

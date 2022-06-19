@@ -73,8 +73,16 @@ class BillsExaminerController extends Controller implements InterBillsExaminer
         return BillsCourierController::deliveryExaminingDelete(false);
     }
 
-    public function examiningRestore(int $id): JsonResponse
-    {
-        return new JsonResponse();
+    public function examiningRestore(int $id): JsonResponse {
+        try {
+            $bill = sqlContas::findTrashed($id);
+
+            if ($bill->restore()) {
+                return BillsCourierController::deliveryExaminingRestore(true);
+            }
+        } catch (\Exception $ex) {
+            return BillsCourierController::deliveryExaminingRestore(false);
+        }
+        return BillsCourierController::deliveryExaminingRestore(false);
     }
 }

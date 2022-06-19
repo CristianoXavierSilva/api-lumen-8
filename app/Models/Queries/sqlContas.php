@@ -14,4 +14,9 @@ class sqlContas extends Contas
             ->where(self::TABLE.'.'.$column, $value)
             ->get()->first();
     }
+
+    public static function findTrashed(int $id) {
+        return Contas::withTrashed()
+            ->findOrFail($id);
+    }
 }
