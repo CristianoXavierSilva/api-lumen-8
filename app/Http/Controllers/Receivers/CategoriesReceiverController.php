@@ -12,7 +12,7 @@ use Illuminate\Validation\ValidationException;
 
 class CategoriesReceiverController extends Controller implements InterCategoriesReceiver
 {
-    public function validatingCreate(Request $request): JsonResponse {
+    public function validating(Request $request): JsonResponse {
         try {
             $validation = $this->validate($request, [
                 'titulo' => 'string|required|max:255|min:3'
@@ -27,9 +27,5 @@ class CategoriesReceiverController extends Controller implements InterCategories
         } catch (ValidationException $ex) {
             return CategoriesCourierController::deliveryValidatingCreate($ex);
         }
-    }
-
-    public function validatingUpdate(Request $request): JsonResponse {
-        return $this->validatingCreate($request);
     }
 }

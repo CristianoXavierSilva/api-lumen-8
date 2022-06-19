@@ -40,7 +40,7 @@ class CategoriesController extends Controller
      */
     public function store(Request $request): JsonResponse {
 
-        $result = $this->validation->validatingCreate($request);
+        $result = $this->validation->validating($request);
 
         if ($result->status() == 100) {
             $result = $this->examination->examiningCreate($result->getData()->delivery);
@@ -67,7 +67,7 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, string $id): JsonResponse {
 
-        $result = $this->validation->validatingUpdate($request);
+        $result = $this->validation->validating($request);
 
         if ($result->status() == 100) {
             $result = $this->examination->examiningUpdate($result->getData()->delivery, $id);
