@@ -25,16 +25,21 @@ $router->post('auth/login', [
  * da requisição
  **/
 $router->group(['middleware' => 'auth'], function () use ($router) {
+
     $router->get('/', function () use ($router) {
         return $router->app->version();
     });
-
     $router->get('auth/logout', [
         'as' => 'auth.logout',
         'uses' => 'Auth\AccessController@logout'
     ]);
 
     $router->group(['prefix' => 'categorias'], function () use ($router) {
+
+        $router->get('/', [
+            'as' => 'category',
+            'uses' => 'Receptionists\CategoriesController@index'
+        ]);
         $router->post('cadastrar', [
             'as' => 'category.create',
             'uses' => 'Receptionists\CategoriesController@store'

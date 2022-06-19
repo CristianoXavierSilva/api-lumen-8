@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Couriers;
 use App\Http\Controllers\Controller;
 use App\Interfaces\Couriers\InterCategoriesCourier;
 use App\Models\Entities\Categorias;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 
 class CategoriesCourierController extends Controller implements InterCategoriesCourier
@@ -53,5 +54,12 @@ class CategoriesCourierController extends Controller implements InterCategoriesC
                 'delivery' => null
             ], 422);
         }
+    }
+
+    public static function deliveryExaminingList(Collection $categories): JsonResponse {
+        return response()->json([
+            'message' => 'Lista de categorias',
+            'delivery' => $categories
+        ]);
     }
 }

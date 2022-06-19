@@ -24,6 +24,15 @@ class CategoriesController extends Controller
     }
 
     /**
+     * Display a listing of categories.
+     *
+     * @return JsonResponse
+     */
+    public function index(): JsonResponse {
+        return $this->examination->examiningList();
+    }
+
+    /**
      * Store a new category.
      *
      * @param  Request  $request
