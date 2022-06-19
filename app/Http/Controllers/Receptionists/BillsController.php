@@ -42,4 +42,14 @@ class BillsController extends Controller
         }
         return $result;
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return JsonResponse
+     */
+    public function show(int $id): JsonResponse {
+        return $this->examination->examiningRead($id);
+    }
 }

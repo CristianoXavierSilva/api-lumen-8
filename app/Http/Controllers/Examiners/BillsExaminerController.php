@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Couriers\BillsCourierController;
 use App\Interfaces\Examiners\InterBillsExaminer;
 use App\Models\Entities\Contas;
+use App\Models\Queries\sqlContas;
 use Illuminate\Http\JsonResponse;
 
 class BillsExaminerController extends Controller implements InterBillsExaminer
@@ -33,9 +34,14 @@ class BillsExaminerController extends Controller implements InterBillsExaminer
         return BillsCourierController::deliveryExaminingCreate($newRecord);
     }
 
-    public function examiningRead(int $id): JsonResponse
-    {
-        return new JsonResponse();
+    public function examiningRead(int $id): JsonResponse {
+        try {
+            $bill = sqlContas::fullOrFind('id_conta', $id);
+            return BillsCourierController::deliveryExaminingRead($bill);
+
+        } catch (\Exception $ex) {
+            return BillsCourierController::deliveryExaminingRead(new sqlContas());
+        }
     }
 
     public function examiningUpdate($validatedData, int $id): JsonResponse

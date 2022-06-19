@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Couriers;
 use App\Http\Controllers\Controller;
 use App\Interfaces\Couriers\InterBillsCourier;
 use App\Models\Entities\Contas;
+use App\Models\Queries\sqlContas;
 use Illuminate\Http\JsonResponse;
 
 class BillsCourierController extends Controller implements InterBillsCourier
@@ -36,6 +37,17 @@ class BillsCourierController extends Controller implements InterBillsCourier
             return response()->json([
                 'message' => 'Conta cadastrada com sucesso!',
                 'delivery' => $newRecord
+            ]);
+        }
+        return self::deliveryExaminingStandard();
+    }
+
+    public static function deliveryExaminingRead(sqlContas $bill = null): JsonResponse {
+
+        if (isset($bill)) {
+            return response()->json([
+                'message' => 'Conta encontrada!',
+                'delivery' => $bill
             ]);
         }
         return self::deliveryExaminingStandard();

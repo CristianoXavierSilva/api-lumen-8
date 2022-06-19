@@ -72,5 +72,9 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
             'as' => 'bill.create',
             'uses' => 'Receptionists\BillsController@store'
         ]);
+        $router->get('visualizar/{id}', [
+            'as' => 'bill.read',
+            'uses' => 'Receptionists\BillsController@show'
+        ]);
     });
 });
