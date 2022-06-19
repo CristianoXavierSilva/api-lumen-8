@@ -11,7 +11,7 @@ use Illuminate\Http\JsonResponse;
 class CategoriesCourierController extends Controller implements InterCategoriesCourier
 {
 
-    public static function deliveryValidatingCreate($validation): JsonResponse {
+    public static function deliveryValidating($validation): JsonResponse {
 
         if (isset($validation->status)) {
             return response()->json([

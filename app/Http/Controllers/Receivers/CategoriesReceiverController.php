@@ -22,10 +22,10 @@ class CategoriesReceiverController extends Controller implements InterCategories
                 'titulo.max' => 'O tamanho do campo <b>Título</b> está acima do limite de 255 caracteres',
                 'titulo.min' => 'O campo <b>Título</b> deve ter no mínimo 3 caracteres'
             ]);
-            return CategoriesCourierController::deliveryValidatingCreate($validation);
+            return CategoriesCourierController::deliveryValidating($validation);
 
         } catch (ValidationException $ex) {
-            return CategoriesCourierController::deliveryValidatingCreate($ex);
+            return CategoriesCourierController::deliveryValidating($ex);
         }
     }
 }
