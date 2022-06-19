@@ -69,4 +69,14 @@ class BillsController extends Controller
         }
         return $result;
     }
+
+    /**
+     * Remove the specified bill from storage.
+     *
+     * @param  int  $id
+     * @return JsonResponse
+     */
+    public function destroy(int $id): JsonResponse {
+        return $this->examination->examiningDelete($id);
+    }
 }

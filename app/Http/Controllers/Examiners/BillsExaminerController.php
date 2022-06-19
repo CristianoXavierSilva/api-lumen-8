@@ -60,9 +60,17 @@ class BillsExaminerController extends Controller implements InterBillsExaminer
         }
     }
 
-    public function examiningDelete(int $id): JsonResponse
-    {
-        return new JsonResponse();
+    public function examiningDelete(int $id): JsonResponse {
+        try {
+            $bill = Contas::findOrFail($id);
+
+            if ($bill->delete()) {
+                return BillsCourierController::deliveryExaminingDelete(true);
+            }
+        } catch (\Exception $ex) {
+            return BillsCourierController::deliveryExaminingDelete(false);
+        }
+        return BillsCourierController::deliveryExaminingDelete(false);
     }
 
     public function examiningRestore(int $id): JsonResponse

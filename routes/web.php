@@ -80,5 +80,9 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
             'as' => 'bill.update',
             'uses' => 'Receptionists\BillsController@update'
         ]);
+        $router->delete('excluir/{id}', [
+            'as' => 'bill.delete',
+            'uses' => 'Receptionists\BillsController@destroy'
+        ]);
     });
 });
