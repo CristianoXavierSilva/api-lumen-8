@@ -45,6 +45,10 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
             'as' => 'category.create',
             'uses' => 'Receptionists\CategoriesController@store'
         ]);
+        $router->get('visualizar/{id}', [
+            'as' => 'category.read',
+            'uses' => 'Receptionists\CategoriesController@show'
+        ]);
         $router->put('editar/{id}', [
             'as' => 'category.update',
             'uses' => 'Receptionists\CategoriesController@update'

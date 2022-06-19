@@ -30,6 +30,16 @@ class CategoriesExaminerController extends Controller implements InterCategories
         return CategoriesCourierController::deliveryExaminingCreate($newRecord);
     }
 
+    public function examiningRead(int $id): JsonResponse {
+        try {
+            $categoria = Categorias::findOrFail($id);
+            return CategoriesCourierController::deliveryExaminingRead($categoria);
+
+        } catch (\Exception $ex) {
+            return CategoriesCourierController::deliveryExaminingUpdate(new Categorias());
+        }
+    }
+
     public function examiningUpdate($validatedData, int $id): JsonResponse {
         try {
             $categoria = Categorias::findOrFail($id);

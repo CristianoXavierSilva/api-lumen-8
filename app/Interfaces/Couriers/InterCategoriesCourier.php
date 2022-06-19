@@ -13,7 +13,8 @@ interface InterCategoriesCourier
     //public static function deliveryValidatingUpdate($validation): JsonResponse;
     //public static function deliveryValidatingDelete(int $id): JsonResponse;
 
-    public static function deliveryExaminingCreate(Categorias $newRecord): JsonResponse;
-    public static function deliveryExaminingUpdate(Categorias $category): JsonResponse;
     public static function deliveryExaminingList(object $categories): JsonResponse;
+    public static function deliveryExaminingCreate(Categorias $newRecord): JsonResponse;
+    public static function deliveryExaminingRead(Categorias $category): JsonResponse;
+    public static function deliveryExaminingUpdate(Categorias $category): JsonResponse;
 }

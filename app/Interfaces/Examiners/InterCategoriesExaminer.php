@@ -7,7 +7,8 @@ use Illuminate\Http\JsonResponse;
 
 interface InterCategoriesExaminer
 {
-    public function examiningCreate($validatedData): JsonResponse;
-    public function examiningUpdate($validatedData, int $id): JsonResponse;
     public function examiningList(string $paginate = null): JsonResponse;
+    public function examiningCreate($validatedData): JsonResponse;
+    public function examiningRead(int $id): JsonResponse;
+    public function examiningUpdate($validatedData, int $id): JsonResponse;
 }

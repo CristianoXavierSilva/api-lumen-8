@@ -49,6 +49,16 @@ class CategoriesController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return JsonResponse
+     */
+    public function show(int $id): JsonResponse {
+        return $this->examination->examiningRead($id);
+    }
+
+    /**
      * Update the specified category.
      *
      * @param  Request  $request
