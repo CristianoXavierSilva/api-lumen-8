@@ -66,4 +66,27 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
             'uses' => 'Receptionists\CategoriesController@restore'
         ]);
     });
+
+    $router->group(['prefix' => 'contas'], function () use ($router) {
+        $router->post('cadastrar', [
+            'as' => 'bill.create',
+            'uses' => 'Receptionists\BillsController@store'
+        ]);
+        $router->get('visualizar/{id}', [
+            'as' => 'bill.read',
+            'uses' => 'Receptionists\BillsController@show'
+        ]);
+        $router->put('editar/{id}', [
+            'as' => 'bill.update',
+            'uses' => 'Receptionists\BillsController@update'
+        ]);
+        $router->delete('excluir/{id}', [
+            'as' => 'bill.delete',
+            'uses' => 'Receptionists\BillsController@destroy'
+        ]);
+        $router->get('restaurar/{id}', [
+            'as' => 'bill.restore',
+            'uses' => 'Receptionists\BillsController@restore'
+        ]);
+    });
 });
