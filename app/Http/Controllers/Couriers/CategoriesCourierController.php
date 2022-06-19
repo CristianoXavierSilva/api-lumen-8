@@ -27,14 +27,29 @@ class CategoriesCourierController extends Controller implements InterCategoriesC
 
     public static function deliveryExaminingCreate(Categorias $newRecord): JsonResponse {
 
-        if (isset($newRecord)) {
+        if (!empty($newRecord)) {
             return response()->json([
                 'message' => 'Categoria cadastrada com sucesso!',
                 'delivery' => $newRecord
             ]);
         } else {
             return response()->json([
-                'message' => 'Erro ao tentar efetuar cadastro!',
+                'message' => 'Erro ao tentar efetuar o cadastro!',
+                'delivery' => null
+            ], 500);
+        }
+    }
+
+    public static function deliveryExaminingUpdate(Categorias $category): JsonResponse {
+
+        if (!empty($category)) {
+            return response()->json([
+                'message' => 'Categoria atualizada com sucesso!',
+                'delivery' => $category
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Erro ao tentar efetuar a atualização!',
                 'delivery' => null
             ], 500);
         }

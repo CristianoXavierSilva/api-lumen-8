@@ -28,4 +28,8 @@ class CategoriesReceiverController extends Controller implements InterCategories
             return CategoriesCourierController::deliveryValidatingCreate($ex);
         }
     }
+
+    public function validatingUpdate(Request $request): JsonResponse {
+        return $this->validatingCreate($request);
+    }
 }

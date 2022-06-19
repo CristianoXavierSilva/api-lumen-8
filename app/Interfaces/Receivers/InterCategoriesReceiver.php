@@ -9,6 +9,6 @@ interface InterCategoriesReceiver
 {
     public function validatingCreate(Request $request): JsonResponse;
     //public function validatingRead(int $id): JsonResponse;
-    //public function validatingUpdate(Request $request): JsonResponse;
+    public function validatingUpdate(Request $request): JsonResponse;
     //public function validatingDelete(int $id): JsonResponse;
 }

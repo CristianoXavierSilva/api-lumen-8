@@ -13,4 +13,5 @@ interface InterCategoriesCourier
     //public static function deliveryValidatingDelete(int $id): JsonResponse;
 
     public static function deliveryExaminingCreate(Categorias $newRecord): JsonResponse;
+    public static function deliveryExaminingUpdate(Categorias $category): JsonResponse;
 }

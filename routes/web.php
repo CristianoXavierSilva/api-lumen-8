@@ -37,7 +37,11 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
     $router->group(['prefix' => 'categorias'], function () use ($router) {
         $router->post('cadastrar', [
             'as' => 'category.create',
-            'uses' => 'Receptionists\CategoriesController@create'
+            'uses' => 'Receptionists\CategoriesController@store'
+        ]);
+        $router->put('editar/{id}', [
+            'as' => 'category.update',
+            'uses' => 'Receptionists\CategoriesController@update'
         ]);
     });
 });
