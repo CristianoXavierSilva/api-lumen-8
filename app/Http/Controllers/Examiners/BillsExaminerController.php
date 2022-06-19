@@ -46,7 +46,18 @@ class BillsExaminerController extends Controller implements InterBillsExaminer
 
     public function examiningUpdate($validatedData, int $id): JsonResponse
     {
-        return new JsonResponse();
+        try {
+            $bill = Contas::findOrFail($id);
+            $bill->id_categoria = $validatedData->categoria;
+            $bill->con_titulo = $validatedData->titulo;
+            $bill->con_valor = $validatedData->valor;
+            $bill->con_status = $validatedData->status;
+            $bill->update();
+            return BillsCourierController::deliveryExaminingUpdate($bill);
+
+        } catch (\Exception $ex) {
+            return BillsCourierController::deliveryExaminingUpdate(new Contas());
+        }
     }
 
     public function examiningDelete(int $id): JsonResponse

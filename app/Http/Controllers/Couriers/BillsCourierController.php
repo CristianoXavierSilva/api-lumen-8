@@ -53,6 +53,16 @@ class BillsCourierController extends Controller implements InterBillsCourier
         return self::deliveryExaminingStandard();
     }
 
+    public static function deliveryExaminingUpdate(Contas $bill): JsonResponse {
+        if (isset($bill->id_conta)) {
+            return response()->json([
+                'message' => 'Conta atualizada com sucesso!',
+                'delivery' => $bill
+            ]);
+        }
+        return self::deliveryExaminingStandard();
+    }
+
     public static function deliveryExaminingStandard(): JsonResponse {
         return response()->json([
             'message' => 'Erro ao tentar efetuar a operação!',

@@ -76,5 +76,9 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
             'as' => 'bill.read',
             'uses' => 'Receptionists\BillsController@show'
         ]);
+        $router->put('editar/{id}', [
+            'as' => 'bill.update',
+            'uses' => 'Receptionists\BillsController@update'
+        ]);
     });
 });

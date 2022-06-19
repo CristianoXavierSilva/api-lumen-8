@@ -52,4 +52,21 @@ class BillsController extends Controller
     public function show(int $id): JsonResponse {
         return $this->examination->examiningRead($id);
     }
+
+    /**
+     * Update the specified bill.
+     *
+     * @param  Request  $request
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function update(Request $request, int $id): JsonResponse {
+
+        $result = $this->validation->validating($request);
+
+        if ($result->status() == 100) {
+            $result = $this->examination->examiningUpdate($result->getData()->delivery, $id);
+        }
+        return $result;
+    }
 }

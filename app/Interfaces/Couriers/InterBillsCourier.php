@@ -12,5 +12,6 @@ interface InterBillsCourier
     public static function deliveryList(object $bills): JsonResponse;
     public static function deliveryExaminingCreate(Contas $newRecord): JsonResponse;
     public static function deliveryExaminingRead(sqlContas $bill = null): JsonResponse;
+    public static function deliveryExaminingUpdate(Contas $bill): JsonResponse;
     public static function deliveryExaminingStandard(): JsonResponse;
 }
