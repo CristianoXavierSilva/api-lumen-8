@@ -15,5 +15,6 @@ interface InterCategoriesCourier
     public static function deliveryExaminingRead(Categorias $category): JsonResponse;
     public static function deliveryExaminingUpdate(Categorias $category): JsonResponse;
     public static function deliveryExaminingDelete(bool $status): JsonResponse;
+    public static function deliveryExaminingRestore(bool $status): JsonResponse;
     public static function deliveryExaminingStandard(): JsonResponse;
 }
