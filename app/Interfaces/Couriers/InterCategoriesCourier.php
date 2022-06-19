@@ -9,7 +9,6 @@ use Illuminate\Http\JsonResponse;
 interface InterCategoriesCourier
 {
     public static function deliveryValidating($validation): JsonResponse;
-
     public static function deliveryExaminingList(object $categories): JsonResponse;
     public static function deliveryExaminingCreate(Categorias $newRecord): JsonResponse;
     public static function deliveryExaminingRead(Categorias $category): JsonResponse;

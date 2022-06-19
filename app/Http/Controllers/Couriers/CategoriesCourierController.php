@@ -12,7 +12,6 @@ class CategoriesCourierController extends Controller implements InterCategoriesC
 {
 
     public static function deliveryValidating($validation): JsonResponse {
-
         if (isset($validation->status)) {
             return response()->json([
                 'message' => 'Validação reprovada!',

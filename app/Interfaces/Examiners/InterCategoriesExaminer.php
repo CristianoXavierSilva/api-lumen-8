@@ -12,4 +12,5 @@ interface InterCategoriesExaminer
     public function examiningRead(int $id): JsonResponse;
     public function examiningUpdate($validatedData, int $id): JsonResponse;
     public function examiningDelete(int $id): JsonResponse;
+    public function examiningRestore(int $id): JsonResponse;
 }
