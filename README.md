@@ -36,7 +36,9 @@ Substitua os valores das variáveis pelas credenciais e configurações do seu b
 5) Gere uma chave de API para a aplicação. Pode ser uma string aleatória de no mínimo 32 caracteres e converta-a
 para base64;
 
-6) Rode o comando abaixo para inserir as 3 tabelas utilizadas para as operações dos endpoints.
+6) Copie essa string e utilize-a como valor para a variável `APP_KEY` no arquivo `.env`;
+
+7) Rode o comando abaixo para inserir as 3 tabelas utilizadas para as operações dos endpoints.
 
 ```
 php artisan migrate
