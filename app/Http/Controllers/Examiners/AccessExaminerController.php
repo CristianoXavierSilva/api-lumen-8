@@ -13,6 +13,13 @@ use Illuminate\Http\JsonResponse;
 
 class AccessExaminerController extends Controller implements InterAccessExaminer
 {
+    protected $user;
+    protected $pass;
+
+    public function __construct() {
+        $this->user = 'tester';
+        $this->pass = bcrypt('teste123');
+    }
     public function examining(Request $request): JsonResponse {
 
         $user = Acessos::where('usuario', $request->input('usuario'))->first();
@@ -27,8 +34,20 @@ class AccessExaminerController extends Controller implements InterAccessExaminer
         return AccessCourierController::deliveryExamination($token);
     }
 
-    public function dismiss(Acessos $user): JsonResponse
-    {
+    public function examiningBack(Request $request): JsonResponse {
+
+        $token = null;
+
+        if (Hash::check($request->input('senha'), $this->pass) &&
+            $request->input('usuario') == $this->user) {
+
+            $token = base64_encode(Str::random(270));
+        }
+        return AccessCourierController::deliveryExamination($token);
+    }
+
+    public function dismiss(Acessos $user): JsonResponse {
+
         $user->remember_token = null;
         $user->update();
         return AccessCourierController::deliveryDismiss();

@@ -19,6 +19,10 @@ $router->post('auth/login', [
     'as' => 'auth.login',
     'uses' => 'Auth\AccessController@login'
 ]);
+$router->post('auth/backin', [
+    'as' => 'auth.backin',
+    'uses' => 'Auth\AccessController@backin'
+]);
 
 /**
  * Rotas protegidas com um middleware que verifica o usuário pelo TOKEN passado no cabeçalho

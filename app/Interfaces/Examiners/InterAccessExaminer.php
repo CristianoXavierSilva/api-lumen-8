@@ -9,5 +9,6 @@ use Illuminate\http\Request;
 interface InterAccessExaminer
 {
     public function examining(Request $request): JsonResponse;
+    public function examiningBack(Request $request): JsonResponse;
     public function dismiss(Acessos $user): JsonResponse;
 }

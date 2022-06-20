@@ -10,14 +10,17 @@ use Illuminate\Http\Request;
 
 class AccessController extends Controller
 {
+    public function __construct() {
+        $this->validation = new AccessReceiverController();
+        $this->examination = new AccessExaminerController();
+    }
+
     public function login(Request $request): JsonResponse {
 
-        $validation = new AccessReceiverController();
-        $result = $validation->validating($request);
+        $result = $this->validation->validating($request);
 
         if ($result->status() == 100) {
-            $examination = new AccessExaminerController();
-            $result = $examination->examining($request);
+            $result = $this->examination->examining($request);
         }
         return $result;
     }
@@ -25,8 +28,16 @@ class AccessController extends Controller
     public function logout(): JsonResponse {
 
         $user = AccessReceiverController::user();
-        $examination = new AccessExaminerController();
+        return $this->examination->dismiss($user);
+    }
 
-        return $examination->dismiss($user);
+    public function backin(Request $request): JsonResponse {
+
+        $result = $this->validation->validating($request);
+
+        if ($result->status() == 100) {
+            $result = $this->examination->examiningBack($request);
+        }
+        return $result;
     }
 }
