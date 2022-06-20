@@ -15,7 +15,7 @@ class AccessController extends Controller
         $validation = new AccessReceiverController();
         $result = $validation->validating($request);
 
-        if ($result->status() == 201) {
+        if ($result->status() == 100) {
             $examination = new AccessExaminerController();
             $result = $examination->examining($request);
         }
