@@ -20,7 +20,8 @@ composer install
 ```
 2) Em seguida, crie um banco de dados sem nenhuma tabela em um servidor MySQL;
 
-3) Crie um arquivo com o nome `.env`, copie e cole nele o conteúdo do arquivo `.env.example`;
+3) Crie no diretório raiz um arquivo com o nome `.env`, copie e cole nele o conteúdo do arquivo `.env.example` que está
+presente também na raiz do projeto;
 
 4) Nas linhas:
 
